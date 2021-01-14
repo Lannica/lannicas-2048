@@ -30,3 +30,10 @@ import java.nio.file.Paths
 applicationDefaultJvmArgs = ["-Djava.library.path=" + Paths.get("build", "natives")]
 
 build.dependsOn includeNatives
+
+task copyToLib(type: Copy) {
+    into "$buildDir/libs"
+    from(configurations.compile)
+}
+
+stage.dependsOn(copyToLib)
